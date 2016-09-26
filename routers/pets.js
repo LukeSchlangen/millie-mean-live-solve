@@ -22,12 +22,21 @@ router.get('/test', function(req, res){
       res.sendStatus(201);
     }
   });
-})
+});
 
 router.get('/', function(req,res){
-  console.log('in pets post');
-  res.sendStatus(200);
-})
+  console.log('in pets get');
+  PetModel.find({}, function(err, petResults){
+    if(err){
+      console.log("ERROR!!!!!!!!");
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      console.log(petResults);
+      res.send(petResults);
+    }
+  });
+});
 
 router.post('/', function(req,res){
   console.log('in pets post');
