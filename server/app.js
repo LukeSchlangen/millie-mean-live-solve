@@ -1,5 +1,11 @@
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
+
+var connection = require('../modules/connection');
+mongoose.connect(connection);
+
+var Pet = require('../models/petModel');
 
 var index = require('../routers/index');
 app.use('/', index);
