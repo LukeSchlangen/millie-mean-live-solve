@@ -40,7 +40,26 @@ router.get('/', function(req,res){
 
 router.post('/', function(req,res){
   console.log('in pets post');
-  res.sendStatus(200);
+  var sentPet = req.body;
+  console.log('sentPet = ', sentPet);
+
+  var newPet = new PetModel({
+    name: sentPet.name,
+    animal_type: sentPet.animal_type,
+    age: sentPet.age,
+    image: sentPet.image
+  })
+
+  newPet.save(function(err){
+    if(err){
+      console.log("ERROR!!!!!!!!");
+      console.log(err);
+      res.sendStatus(500);
+    } else {
+      console.log("New pet Saved!");
+      res.sendStatus(201);
+    }
+  });
 });
 
 module.exports = router;

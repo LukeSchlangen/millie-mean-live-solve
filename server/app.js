@@ -1,11 +1,16 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var connection = require('../modules/connection');
 mongoose.connect(connection);
 
 var Pet = require('../models/petModel');
+
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
 
 var indexRouter = require('../routers/index');
 app.use('/', indexRouter);

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title></title>
+    <script type="text/javascript" src="./vendors/angular.min.js"></script>
+    <script type="text/javascript" src="./scripts/clientapp.js"></script>
   </head>
   <body>
+    <div ng-init="getPets()" ng-controller="viewPetController">
+      <div id="petDiv" ng-repeat="pet in pets">
+        {{pet.name}}
+      </div>
+    </div>
+    <div ng-controller="addPetController">
+      <form>
+        <label for="name">Name</label>
+        <input type="text" name="name" ng-model="name">
+        <label for="animal">Animal Type</label>
+        <input type="text" name="animal" ng-model="animal">
+        <label for="age">Age</label>
+        <input type="text" name="age" ng-model="age">
+        <label for="image">Image</label>
+        <input type="text" name="image" ng-model="image">
+        <input ng-click="addPet(name, animal, age, image)" type="button" name="name" value="Submit Pet">
+      </form>
+    </div>
     test
   </body>
 </html>
